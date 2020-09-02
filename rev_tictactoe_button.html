@@ -360,31 +360,9 @@ class MCTS_node {
       }
    }
 
-   // Traverse down the node. Update scores.
-
-   traverse() {
-      var score;
-      var child;
-
-      if (this._children.length == 0) {
-         score = random_plays(this._board, this._player, new Random(), new Random(), 1);
-      } else {
-         child = this.best();
-         //alert(child);
-         score = child.traverse();
-      }
-
-      this._n += 1;
-      this._w += score
-      if (this._n == this.minplay && this._children.length == 0)
-         this.expand();
-
-      return 1.0 - score;
-   }
-
 }
 
-// Update 4
+// Update 5
 	
 function main_start_game() {
    var p1 = document.getElementById('p1').selectedIndex;
