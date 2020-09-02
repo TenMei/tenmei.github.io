@@ -449,80 +449,10 @@ class MCTS {
    }
 }
 
-// -------------------------------- These routines play the game. -------------------------
 
-var main_board = new TicTacToe();
-var main_choice = -1;
-// var main_player1 = new Random();
-// var main_player2 = new MCTS(30000, 10)
-var main_player2 = new Human();
-var main_player1 = new Human();
-var main_curr_player = 1;
 
-//main_start_game();
-
-// On clicking a square (by human player).
-
-function click_square(action) {
-   main_choice = action;
-   
-   for (i = 0; i < 25; i++)
-      document.getElementById(i).setAttribute('onclick', '');
-   
-   setTimeout(draw_move, 50, action, main_curr_player);
-   main_board.make_action(main_curr_player, action);
-   main_curr_player = 3 - main_curr_player;
-   setTimeout(main_play_move, 100);
-}
-
-// Draw a move based on current action.
-
-function draw_move(action, player) {
-   if (player == 1) 
-      draw_X(action);
-   else
-      draw_O(action);
-}
-
-// Play a move in the main game.
-
-function main_play_move() {
-   var player = [main_player1, main_player2][main_curr_player - 1];
-   
-   // Check if game is over.
-
-   if (main_board.status() > 0) {
-      alert(["X wins.", "O wins.", "Draw."][main_board.status() - 1]);
-      return;
-   }
-   
-   // If the player is computer...
-   
-   if ("find_move" in player) {
-      var action = player.find_move(main_curr_player, main_board);
-      document.getElementById('text').innerHTML = 'Computer is thinking for ' + "XO"[main_curr_player-1];
-      
-      main_board.make_action(main_curr_player, action);
-      setTimeout(draw_move, 50, action, main_curr_player);
-      main_curr_player = 3 - main_curr_player;
-      setTimeout(main_play_move, 100);
-   } else {
-      var i, m;
-      
-      for (i = 0; i < 25; i++) {
-         if (main_board._state[i] == 0) {
-            document.getElementById(i).setAttribute('onclick', 'click_square(' + i.toString() + ')');
-               //setAttribute('onclick', 'alert(' + i.toString() + ')');
-         }
-      }
-      
-      document.getElementById('text').innerHTML = 'Please make a move for ' + "XO"[main_curr_player-1];
-      
-      // Pass control to click_square.
-   }
-
-}
-
+// Update 1
+	
 function main_start_game() {
    var p1 = document.getElementById('p1').selectedIndex;
    var p2 = document.getElementById('p2').selectedIndex;
