@@ -382,42 +382,9 @@ class MCTS_node {
       return 1.0 - score;
    }
 
-   // Find best node among children via UCB1.
-
-   best() {
-      var node, i;
-
-      if (this._children.length == 0)
-         return null;
-
-      for (i in this._children)
-         if (this._children[i]._n == 0) return this._children[i];
-
-      var total = 0;
-      for (i in this._children)
-         total += this._children[i]._n;
-
-      var max = -1e9;
-      var ucb1, select;
-
-      for (i in this._children) {
-         node = this._children[i];
-
-         //alert(node._n);
-         ucb1 = - node._w / node._n + Math.sqrt(2.0 * Math.log(total) / node._n);
-         if (ucb1 > max) {
-            max = ucb1;
-            select = node;
-         }
-      }
-      //alert(select);
-
-      return select;
-   }
-
 }
 
-// Update 3
+// Update 4
 	
 function main_start_game() {
    var p1 = document.getElementById('p1').selectedIndex;
