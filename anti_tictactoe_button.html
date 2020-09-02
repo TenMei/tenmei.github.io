@@ -463,29 +463,13 @@ var main_curr_player = 1;
 
 // On clicking a square (by human player).
 
-function click_square(action) {
-   main_choice = action;
-   
-   for (i = 0; i < 25; i++)
-      document.getElementById(i).setAttribute('onclick', '');
-   
-   setTimeout(draw_move, 50, action, main_curr_player);
-   main_board.make_action(main_curr_player, action);
-   main_curr_player = 3 - main_curr_player;
-   setTimeout(main_play_move, 100);
-}
 
-// Draw a move based on current action.
-
-function draw_move(action, player) {
-   if (player == 1) 
-      draw_X(action);
-   else
-      draw_O(action);
-}
 
 
 function main_start_game() {
+   
+   draw_board();
+	
    var p1 = document.getElementById('p1').selectedIndex;
    var p2 = document.getElementById('p2').selectedIndex;
    
@@ -510,8 +494,7 @@ function main_start_game() {
    else if (p2 == 4)
       main_player2 = new MCTS(30000, 10);
    
-   draw_board();
-	setTimeout(main_play_move, 0);
+   setTimeout(main_play_move, 0);
 }
 
 
