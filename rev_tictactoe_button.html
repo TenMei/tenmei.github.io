@@ -336,33 +336,9 @@ class MCTS_node {
       this._w = 0;
    }
 
-   // Expand current node.
-
-   expand(store_moves = false) {
-      var action, i;
-
-      if (store_moves)
-         this._moves = {};
-
-      if (this._board._status != 0) 
-         return;
-
-      var moves = this._board.moves(this._player);
-
-      for (i in moves) {
-         action = moves[i];
-         var new_board = this._board.copy();
-         new_board.make_action(this._player, action);
-         var new_node = new MCTS_node(new_board, 3 - this._player);
-         this._children.push(new_node);
-         if (store_moves) 
-            this._moves[action] = new_node;
-      }
-   }
-
 }
 
-// Update 5
+// Update 6
 	
 function main_start_game() {
    var p1 = document.getElementById('p1').selectedIndex;
